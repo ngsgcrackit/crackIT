@@ -18,14 +18,14 @@
         <activity
             android:name=".Test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Event.Events" > <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".Event.Events" > </activity>
         <activity android:name=".Profile" />
         <activity android:name=".Auth.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Home"
