@@ -4,6 +4,7 @@ package com.rgs.oes;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.format.DateFormat;
@@ -24,6 +25,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -178,6 +182,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         databaseReference.child("Email").setValue(sharedPreferences.getString("email","Not aval"));
         databaseReference.child("Date").setValue(s);
         setDataBar();
+
+        //pie chart
+        PieChartView pieChartView = findViewById(R.id.chart);
+        List<SliceValue> pieData = new ArrayList<>();
+        pieData.add(new SliceValue(15, Color.BLUE));
+        pieData.add(new SliceValue(25, Color.GRAY));
+        pieData.add(new SliceValue(10, Color.RED));
+        pieData.add(new SliceValue(60, Color.MAGENTA));
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartView.setPieChartData(pieChartData);
 
     }
 
@@ -356,6 +370,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             barChart.setData(data);
         }
+
+
     }
 
     public static String getFormattedDateSimple(Long dateTime) {
