@@ -25,9 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.PieChartView;
+
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -36,6 +34,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.model.GradientColor;
@@ -47,6 +46,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.rgs.oes.Auth.Login;
 import com.rgs.oes.Event.Events;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -68,6 +73,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     String role;
     BarChart barChart;
     FirebaseAuth firebaseAuth;
+    PieChart pieChart ;
+    PieDataSet pieDataSet ;
+    List<PieEntry> entries;
+    PieData pieData ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +166,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //            mv.setChartView(barChart); // For bounds control
 //            barChart.setMarker(mv);
         }
+            pieChart = (PieChart) findViewById(R.id.chart1);
+
+
+
+            //PieEntryLabels = new ArrayList<String>();
+
+            AddValuesToPIEENTRY();
+
+            pieDataSet = new PieDataSet(entries, "n");
+
+            pieData = new PieData(pieDataSet);
+
+            pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+            pieChart.setData(pieData);
+
+            pieChart.animateY(3000);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("sp", 0);
 
@@ -184,16 +210,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setDataBar();
 
         //pie chart
-        PieChartView pieChartView = findViewById(R.id.chart);
-        List<SliceValue> pieData = new ArrayList<>();
-        pieData.add(new SliceValue(15, Color.BLUE));
-        pieData.add(new SliceValue(25, Color.GRAY));
-        pieData.add(new SliceValue(10, Color.RED));
-        pieData.add(new SliceValue(60, Color.MAGENTA));
-        PieChartData pieChartData = new PieChartData(pieData);
-        pieChartView.setPieChartData(pieChartData);
+
 
     }
+    public void AddValuesToPIEENTRY(){
+        entries= new ArrayList<>();
+        entries.add(new PieEntry(18.5f,"green"));
+        entries.add(new PieEntry(26.7f, "yellow"));
+        entries.add(new PieEntry(24.0f,"red"));
+        entries.add(new PieEntry(30.8f,"blue"));
+
+    }
+
 
     public static Home getInstance() {
         return instance;
