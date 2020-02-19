@@ -147,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xsmall"
-                    android:text="Date"
+                    android:text="Date Registered"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="@color/grey_60" />
 
