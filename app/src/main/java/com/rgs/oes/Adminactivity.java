@@ -169,8 +169,8 @@ public class Adminactivity extends AppCompatActivity {
                 }
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users/" + uid.get(position));
                 databaseReference.child("Name").setValue(editName.getText().toString());
-                databaseReference.child("V1").setValue(editV1.getText().toString());
-                databaseReference.child("V2").setValue(editV2.getText().toString());
+                databaseReference.child("Role").setValue(editV1.getText().toString());
+                databaseReference.child("Admin").setValue(editV2.getText().toString());
                 dialog.dismiss();
             }
         });
