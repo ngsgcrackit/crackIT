@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
-    static public String Name, Rollno, Phoneno, Fullname, Email, Gender, Year, Branch, UID, Role;
+    static public String Name, Rollno, Phoneno, Fullname, Email, Gender, Year, Branch, UID, Role, Admin;
     CountDownTimer mCountDownTimer;
     String userEmail;
     LinearLayout linearLayout,lyt_progress;
@@ -158,7 +158,10 @@ public class Login extends AppCompatActivity {
                         Gender = dataSnapshot.child("Gender").getValue().toString();
                         Year = dataSnapshot.child("Year").getValue().toString();
                         Branch = dataSnapshot.child("Branch").getValue().toString();
-                        Role = dataSnapshot.child("Role").getValue().toString();
+                        if (dataSnapshot.hasChild("Role")){
+                            Role = dataSnapshot.child("Role").getValue().toString();} else {Role = "0";}
+                        if (dataSnapshot.hasChild("Admin")){
+                            Admin= dataSnapshot.child("Admin").getValue().toString();} else {Admin = "0";}
 
                     } else {
                         Name = "NO data found";
@@ -171,6 +174,7 @@ public class Login extends AppCompatActivity {
                         Year = "NO data found";
                         Branch = "NO data found";
                         Role = "0";
+                        Admin = "0";
                     }
 
                     //Storing data to display in the Nav bar and in the app
@@ -187,6 +191,7 @@ public class Login extends AppCompatActivity {
                     editor.putString("branch" , Branch);
                     editor.putString("UID" , UID);
                     editor.putString("Role" , Role);
+                    editor.putString("Admin" , Admin);
                     editor.apply();
 
 

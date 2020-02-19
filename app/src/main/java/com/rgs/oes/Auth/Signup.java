@@ -146,6 +146,7 @@ public class Signup extends AppCompatActivity {
                                 databaseReference.child("UID").setValue(firebaseAuth.getUid());
                                 databaseReference.child("Date").setValue(s);
                                 databaseReference.child("Role").setValue(0);
+                                databaseReference.child("Admin").setValue(0);
                                 showaccountcreatedDialog();
 
                             }

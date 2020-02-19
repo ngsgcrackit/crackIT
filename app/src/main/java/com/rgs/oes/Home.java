@@ -1,6 +1,5 @@
 package com.rgs.oes;
 
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,7 +58,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -194,9 +192,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Menu nav_Menu = navView.getMenu();
             nav_Menu.findItem(R.id.nav_teacher).setVisible(false);
         } else if (role.equals("1")){
-            Toast.makeText(instance, "KUJGHFuksdb", Toast.LENGTH_SHORT).show();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Teachers/" + firebaseAuth.getUid());
             databaseReference.child("Name").setValue(sharedPreferences.getString("name","0"));
+        }
+
+        if (sharedPreferences.getString("Admin","0").equals("1")){
+            Toast.makeText(instance, "asdad", Toast.LENGTH_SHORT).show();
         }
 
         navviewdata();
@@ -208,9 +209,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         databaseReference.child("Email").setValue(sharedPreferences.getString("email","Not aval"));
         databaseReference.child("Date").setValue(s);
         setDataBar();
-
-        //pie chart
-
 
     }
     public void AddValuesToPIEENTRY(){
@@ -279,6 +277,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    static int i = 0;
+
+    public void onClick_nav(View view) {
+        i++;
+
+        if (i == 2) {
+            Toast.makeText(instance, "Your are one click away from entering Admin panel", Toast.LENGTH_SHORT).show();
+        } else if (i == 3) {
+            if(sharedPreferences.getString("Admin" , "0").equals("1")){
+                startActivity(new Intent(Home.this , Adminactivity.class));
+            } else {
+                Toast.makeText(instance, "You do not have admin rights", Toast.LENGTH_SHORT).show(); }
+            i = 0;
+        }
     }
 
     //Exit Dialog
