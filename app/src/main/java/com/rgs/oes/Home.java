@@ -76,7 +76,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     PieChart pieChart ;
     PieDataSet pieDataSet ;
     List<PieEntry> entries;
-    PieData pieData ;
+    PieData pieData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
