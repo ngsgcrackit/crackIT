@@ -341,6 +341,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <Switch
+                        android:id="@+id/simpleSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"/>
+
                     <EditText
                         android:id="@+id/edit_v1"
                         android:layout_width="0dp"

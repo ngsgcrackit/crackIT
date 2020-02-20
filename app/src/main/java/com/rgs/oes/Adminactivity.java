@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,6 +135,10 @@ public class Adminactivity extends AppCompatActivity {
         editRollno = (EditText) dialog.findViewById(R.id.edit_rollno);
         editBranchname = (EditText) dialog.findViewById(R.id.edit_branchname);
         editPhone = (EditText) dialog.findViewById(R.id.edit_phone);
+        Switch simpleSwitch = (Switch) dialog.findViewById(R.id.simpleSwitch);
+
+//set the current state of a Switch
+        simpleSwitch.setChecked(true);
 
         databaseReference.child("Users/"+uid.get(position)).addValueEventListener(new ValueEventListener() {
             @Override
