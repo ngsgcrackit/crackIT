@@ -129,16 +129,12 @@ public class Adminactivity extends AppCompatActivity {
         final TextView editEmail = dialog.findViewById(R.id.textv_email);
         final TextView textvDate =  dialog.findViewById(R.id.textv_date);
         final TextView textvUid =  dialog.findViewById(R.id.textv_uid);
-        final EditText editV1 =  dialog.findViewById(R.id.edit_v1);
-        final EditText editV2 =  dialog.findViewById(R.id.edit_v2);
         editGender = (EditText) dialog.findViewById(R.id.edit_gender);
         editRollno = (EditText) dialog.findViewById(R.id.edit_rollno);
         editBranchname = (EditText) dialog.findViewById(R.id.edit_branchname);
         editPhone = (EditText) dialog.findViewById(R.id.edit_phone);
-        Switch simpleSwitch = (Switch) dialog.findViewById(R.id.simpleSwitch);
-
-//set the current state of a Switch
-        simpleSwitch.setChecked(true);
+        final Switch simpleSwitch = (Switch) dialog.findViewById(R.id.simpleSwitch);
+        final Switch simpleSwitch2 = (Switch) dialog.findViewById(R.id.simpleSwitch2);
 
         databaseReference.child("Users/"+uid.get(position)).addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,6 +152,14 @@ public class Adminactivity extends AppCompatActivity {
                 phone = dataSnapshot.child("PhoneNO").getValue().toString();
                 year =  dataSnapshot.child("Year").getValue().toString();
 
+                if (V1.equals("1")){
+                    simpleSwitch.setChecked(true);
+                }
+
+                if (V2.equals("1")){
+                    simpleSwitch2.setChecked(true);
+                }
+
                 editGender.setText(gender);
                 editRollno.setText(rollno);
                 editBranchname.setText(year + " " + branch);
@@ -164,8 +168,6 @@ public class Adminactivity extends AppCompatActivity {
                 editEmail.setText(Email);
                 textvDate.setText(Date);
                 textvUid.setText(UID);
-                editV1.setText(V1);
-                editV2.setText(V2);
                 Log.v(TAG,""+ users.size()); //displays the key for the node
                 Log.v(TAG,""+ dataSnapshot.child("Name").getValue());   //gives the value for given keyname
             }
@@ -189,11 +191,20 @@ public class Adminactivity extends AppCompatActivity {
                 }
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users/" + uid.get(position));
                 databaseReference.child("Name").setValue(editName.getText().toString());
-                databaseReference.child("Role").setValue(editV1.getText().toString());
-                databaseReference.child("Admin").setValue(editV2.getText().toString());
                 databaseReference.child("PhoneNO").setValue(editPhone.getText().toString());
                 databaseReference.child("RollNO").setValue(editRollno.getText().toString());
                 databaseReference.child("Gender").setValue(editGender.getText().toString());
+
+                if (simpleSwitch2.isChecked()){
+                    databaseReference.child("Admin").setValue(1);
+                } else {
+                    databaseReference.child("Admin").setValue(0);
+                }
+
+                if (simpleSwitch.isChecked()){
+                    databaseReference.child("Role").setValue(1);
+                } else {
+                    databaseReference.child("Role").setValue(0);                }
                 dialog.dismiss();
             }
         });

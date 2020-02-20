@@ -344,23 +344,10 @@
                     <Switch
                         android:id="@+id/simpleSwitch"
                         android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_height="wrap_content"
                         android:checked="false"/>
-
-                    <EditText
-                        android:id="@+id/edit_v1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:layout_marginTop="7dp"
-                        android:text="Please Wait..."
-                        android:spinnerMode="dialog"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:background="@null"
-                        android:textColor="@color/green_700" />
-
-
 
                 </LinearLayout>
 
@@ -381,18 +368,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/edit_v2"
-                        android:layout_width="0dp"
+                    <Switch
+                        android:id="@+id/simpleSwitch2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:layout_marginTop="7dp"
-                        android:text="Please Wait..."
-                        android:spinnerMode="dialog"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:background="@null"
-                        android:textColor="@color/green_700" />
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:checked="false"/>
 
 
 
