@@ -130,6 +130,10 @@
                         android:layout_height="match_parent"
                         android:text="Please select Gender, Year, Branch below" />
 
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"

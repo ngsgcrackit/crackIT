@@ -1,8 +1,5 @@
 package com.rgs.oes;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,7 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,9 +29,6 @@ import java.util.Date;
 public class Adminactivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
-    float costperunuit;
-    TextView rupeeunit,costhange,versionchange;
-    View parentview;
     SharedPreferences sharedPreferences;
     CharSequence s;
     float rs;
@@ -139,7 +134,6 @@ public class Adminactivity extends AppCompatActivity {
         editRollno = (EditText) dialog.findViewById(R.id.edit_rollno);
         editBranchname = (EditText) dialog.findViewById(R.id.edit_branchname);
         editPhone = (EditText) dialog.findViewById(R.id.edit_phone);
-
 
         databaseReference.child("Users/"+uid.get(position)).addValueEventListener(new ValueEventListener() {
             @Override

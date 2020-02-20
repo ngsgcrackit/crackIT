@@ -4,17 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Profile extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
-    private TextView profileName;
     private TextView profileEmail;
-    private TextView profileRollno;
-    private TextView profilePhoneno;
-    private TextView profileGender;
-    private TextView profileBrandhandyear;
+    private EditText editName;
+    private EditText editRollPro;
+    private EditText editPhPro;
+    private EditText editGenderPro;
+    private EditText editBranchPro;
+    FirebaseAuth firebaseAuth;
+
+
 
 
 
@@ -24,20 +34,32 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        profileName = (TextView) findViewById(R.id.profile_name);
+        firebaseAuth = FirebaseAuth.getInstance();
+
         profileEmail = (TextView) findViewById(R.id.profile_email);
-        profileRollno = (TextView) findViewById(R.id.profile_rollno);
-        profilePhoneno = (TextView) findViewById(R.id.profile_phoneno);
-        profileGender = (TextView) findViewById(R.id.profile_gender);
-        profileBrandhandyear = (TextView) findViewById(R.id.profile_brandhandyear);
+        editName = (EditText) findViewById(R.id.edit_name);
+        editRollPro = (EditText) findViewById(R.id.edit_roll_pro);
+        editPhPro = (EditText) findViewById(R.id.edit_ph_pro);
+        editGenderPro = (EditText) findViewById(R.id.edit_gender_pro);
+        editBranchPro = (EditText) findViewById(R.id.edit_branch_pro);
+
 
         sharedPreferences = getApplicationContext().getSharedPreferences("sp", 0);
-        profileName.setText(sharedPreferences.getString("name", "NO data found"));
+        editName.setText(sharedPreferences.getString("name", "NO data found"));
         profileEmail.setText(sharedPreferences.getString("email", "NO data found"));
-        profileRollno.setText(sharedPreferences.getString("rollno", "NO data found"));
-        profilePhoneno.setText(sharedPreferences.getString("phoneno", "NO data found"));
-        profileBrandhandyear.setText(sharedPreferences.getString("year", "NO data found") + " " + sharedPreferences.getString("branch", "NO data found"));
-        profileGender.setText(sharedPreferences.getString("gender", "NO data found"));
+        editRollPro.setText(sharedPreferences.getString("rollno", "NO data found"));
+        editPhPro.setText(sharedPreferences.getString("phoneno", "NO data found"));
+        editBranchPro.setText(sharedPreferences.getString("year", "NO data found") + " " + sharedPreferences.getString("branch", "NO data found"));
+        editGenderPro.setText(sharedPreferences.getString("gender", "NO data found"));
 
+    }
+
+    public void update(View view) {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users/" + firebaseAuth.getUid());
+        databaseReference.child("Name").setValue(editName.getText().toString());
+        databaseReference.child("PhoneNO").setValue(editPhPro.getText().toString());
+        databaseReference.child("RollNO").setValue(editRollPro.getText().toString());
+        databaseReference.child("Gender").setValue(editGenderPro.getText().toString());
     }
 }
