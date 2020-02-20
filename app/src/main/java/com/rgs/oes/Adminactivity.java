@@ -42,6 +42,13 @@ public class Adminactivity extends AppCompatActivity {
     ArrayList<String> uid = new ArrayList<String>();
     ArrayList<String> usersar = new ArrayList<String>();
     ArrayList<String> uidar = new ArrayList<String>();
+    private EditText editGender;
+    private EditText editRollno;
+    private EditText editBranchname;
+    private EditText editPhone;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,18 +135,32 @@ public class Adminactivity extends AppCompatActivity {
         final TextView textvUid =  dialog.findViewById(R.id.textv_uid);
         final EditText editV1 =  dialog.findViewById(R.id.edit_v1);
         final EditText editV2 =  dialog.findViewById(R.id.edit_v2);
+        editGender = (EditText) dialog.findViewById(R.id.edit_gender);
+        editRollno = (EditText) dialog.findViewById(R.id.edit_rollno);
+        editBranchname = (EditText) dialog.findViewById(R.id.edit_branchname);
+        editPhone = (EditText) dialog.findViewById(R.id.edit_phone);
 
 
         databaseReference.child("Users/"+uid.get(position)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String gender,rollno,branch,phone,year;
                 String Date = dataSnapshot.child("Date").getValue().toString();
                 String Name = dataSnapshot.child("Name").getValue().toString();
                 Email = dataSnapshot.child("Email").getValue().toString();
                 String UID = dataSnapshot.getKey();
                 String V1 = dataSnapshot.child("Role").getValue().toString();
                 String V2 = dataSnapshot.child("Admin").getValue().toString();
+                gender = dataSnapshot.child("Gender").getValue().toString();
+                rollno = dataSnapshot.child("RollNO").getValue().toString();
+                branch = dataSnapshot.child("Branch").getValue().toString();
+                phone = dataSnapshot.child("PhoneNO").getValue().toString();
+                year =  dataSnapshot.child("Year").getValue().toString();
 
+                editGender.setText(gender);
+                editRollno.setText(rollno);
+                editBranchname.setText(year + " " + branch);
+                editPhone.setText(phone);
                 editName.setText(Name);
                 editEmail.setText(Email);
                 textvDate.setText(Date);
@@ -171,6 +192,9 @@ public class Adminactivity extends AppCompatActivity {
                 databaseReference.child("Name").setValue(editName.getText().toString());
                 databaseReference.child("Role").setValue(editV1.getText().toString());
                 databaseReference.child("Admin").setValue(editV2.getText().toString());
+                databaseReference.child("PhoneNO").setValue(editPhone.getText().toString());
+                databaseReference.child("RollNO").setValue(editRollno.getText().toString());
+                databaseReference.child("Gender").setValue(editGender.getText().toString());
                 dialog.dismiss();
             }
         });
