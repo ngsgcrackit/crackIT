@@ -320,8 +320,6 @@
                         android:background="@null"
                         android:textColor="@color/green_700" />
 
-
-
                 </LinearLayout>
 
                 <View
@@ -375,8 +373,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
                         android:checked="false"/>
-
-
 
                 </LinearLayout>
 
