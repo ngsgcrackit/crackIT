@@ -215,14 +215,14 @@ public class Adminactivity extends AppCompatActivity {
 
     public void userslist(View view) {
         final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.userslist);
         dialog.setCancelable(true);
 
         ListView lv;
-        lv = (ListView) dialog.findViewById(R.id.listviewaa);
+        lv = dialog.findViewById(R.id.listviewaa);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, users );
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users );
 
         lv.setAdapter(arrayAdapter);
 

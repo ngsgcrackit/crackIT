@@ -54,7 +54,6 @@ public class Profile extends AppCompatActivity {
         editGenderPro = (EditText) findViewById(R.id.edit_gender_pro);
         editBranchPro = (EditText) findViewById(R.id.edit_branch_pro);
 
-
         sharedPreferences = getApplicationContext().getSharedPreferences("sp", 0);
         editName.setText(sharedPreferences.getString("name", "NO data found"));
         profileEmail.setText(sharedPreferences.getString("email", "NO data found"));
