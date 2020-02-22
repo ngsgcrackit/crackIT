@@ -163,6 +163,9 @@ public class Login extends AppCompatActivity {
                         if (dataSnapshot.hasChild("Admin")){
                             Admin= dataSnapshot.child("Admin").getValue().toString();} else {Admin = "0";}
 
+                        TextView tv = findViewById(R.id.login_text);
+                        tv.setText("Welcome " + Name);
+
                     } else {
                         Name = "NO data found";
                         Email = "NO data found";

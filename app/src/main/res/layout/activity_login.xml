@@ -24,11 +24,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorAccent" />
 
-                <pl.droidsonroids.gif.GifImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/gif" />
-
     </LinearLayout>
 
     <RelativeLayout

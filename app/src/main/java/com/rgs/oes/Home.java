@@ -177,13 +177,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             AddValuesToPIEENTRY();
 
             pieDataSet = new PieDataSet(entries, "n");
-
             pieData = new PieData(pieDataSet);
-
             pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
             pieChart.setData(pieData);
-
             pieChart.animateY(3000);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("sp", 0);
@@ -215,6 +211,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setDataBar();
 
     }
+
     public void AddValuesToPIEENTRY(){
         entries= new ArrayList<>();
         entries.add(new PieEntry(18.5f,"green"));
@@ -223,7 +220,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         entries.add(new PieEntry(30.8f,"blue"));
 
     }
-
 
     public static Home getInstance() {
         return instance;
@@ -278,7 +274,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         } else if (id == R.id.nav_help){
             Toast.makeText(instance, "Help", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_changepass){
-changepass();        }
+            changepass();
+        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
