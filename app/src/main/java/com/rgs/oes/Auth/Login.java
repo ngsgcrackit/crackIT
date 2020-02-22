@@ -193,18 +193,8 @@ public class Login extends AppCompatActivity {
                     editor.putString("Role" , Role);
                     editor.putString("Admin" , Admin);
                     editor.apply();
-
-
-                    mCountDownTimer = new CountDownTimer(4000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-
-                        }
-
-                        public void onFinish() {
-                            startActivity(new Intent(Login.this, Home.class));
-                            finish();
-                        }
-                    }.start();
+                    startActivity(new Intent(Login.this, Home.class));
+                    finish();
 
                 }
 
