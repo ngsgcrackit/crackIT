@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.alexfu.countdownview.CountDownView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,13 +32,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Test extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private TextView quest_tv,marks;
     int MAX_STEP, selectedId, position = 0;
-    int current_step = 1,corect = 0;
+    int current_step = 1,corect = 0,Wrong = 0;
     ArrayList<String> que = new ArrayList<String>();
     ArrayList<String> A = new ArrayList<String>();
     ArrayList<String> B = new ArrayList<String>();
@@ -44,10 +48,12 @@ public class Test extends AppCompatActivity {
     ArrayList<String> ans = new ArrayList<String>();
     ArrayList<String> key = new ArrayList<String>();
     ArrayList<String> marksa = new ArrayList<String>();
+    ArrayList<String> dbans = new ArrayList<String>();
     private RadioGroup radioquestionGroup;
     private RadioButton radioans;
     RadioButton Ar,Br,Cr,Dr;
     String keyi;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -63,6 +69,8 @@ public class Test extends AppCompatActivity {
         setTitle("Progress");
         getSupportActionBar().setSubtitle("");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Intent intent = getIntent();
         keyi = intent.getStringExtra("testid");
 
@@ -77,6 +85,11 @@ public class Test extends AppCompatActivity {
 
                 // get total available quest
                 MAX_STEP = (int) dataSnapshot.getChildrenCount();
+                Toast.makeText(Test.this, ""+MAX_STEP, Toast.LENGTH_SHORT).show();
+
+                for (int i = 1; i <= MAX_STEP; i++) {
+                    dbans.add("");
+                }
 
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -117,11 +130,15 @@ public class Test extends AppCompatActivity {
         radioquestionGroup = findViewById(R.id.radioGroup);
         selectedId=radioquestionGroup.getCheckedRadioButtonId();
         radioans =(RadioButton)findViewById(selectedId);
-        if (selectedId == -1){ //TODO: Tommor never dies
+        if (selectedId == -1){
+            dbans.set(pro,"0");
+            //TODO: Tommor never dies
         } else {
             if (radioans.getText().equals(ans.get(pro))){
+                dbans.set(pro,"1");
                 corect++;
             } else {
+                dbans.set(pro,"0");
                 corect--;
             }
         }
@@ -166,6 +183,7 @@ public class Test extends AppCompatActivity {
         TextView tv = findViewById(R.id.next_test);
 
         if(tv.getText().equals("Submit")){
+            Wrong = MAX_STEP - corect;
             showtestexitDialog();
         }
 
@@ -217,6 +235,26 @@ public class Test extends AppCompatActivity {
         ((AppCompatButton) dialog.findViewById(R.id.bt_submit)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Date d = new Date();
+                CharSequence s  = DateFormat.format("MMMM d, yyyy HH:mm:ss", d.getTime());
+                SharedPreferences sharedPreferences;
+                sharedPreferences = getApplicationContext().getSharedPreferences("sp", 0);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users/" + firebaseAuth.getUid() +"/Exams/" + keyi);
+                databaseReference.child("Name").setValue(sharedPreferences.getString("name","0"));
+                databaseReference.child("TotalQ").setValue(MAX_STEP);
+                databaseReference.child("Correctans").setValue(corect);
+                databaseReference.child("wrongans").setValue(Wrong);
+                databaseReference.child("Time").setValue(s);
+                databaseReference.child("Teacher").setValue("Temp.....");
+                databaseReference.child("ID").setValue("Temp.....");
+                DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Users/" + firebaseAuth.getUid() +"/Exams/" + keyi + "/Ans");
+
+
+                for (int i = 0; i < dbans.size() ; i++){
+                    databaseReference2.child(String.valueOf(i)).setValue(dbans.get(i));
+                }
+
+
                 Toast.makeText(Test.this, "Submit clicked", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
