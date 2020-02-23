@@ -74,7 +74,6 @@ public class Test extends AppCompatActivity {
 
                 // get total available quest
                 MAX_STEP = (int) dataSnapshot.getChildrenCount();
-                Toast.makeText(Test.this, MAX_STEP+"", Toast.LENGTH_SHORT).show();
 
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -160,12 +159,22 @@ public class Test extends AppCompatActivity {
             current_step = progress;
             ViewAnimation.fadeOutIn(quest_tv);
         }
+        TextView tv = findViewById(R.id.next_test);
+
+        if(tv.getText().equals("Submit")){
+            Toast.makeText(this, "Submit clicked", Toast.LENGTH_SHORT).show();
+        }
+
+        if (current_step >= MAX_STEP){tv.setText("Submit");} else { tv.setText("Next");}
+
+
 
         if (current_step >= MAX_STEP+1){
             current_step--;
             setans(position);
-            Toast.makeText(this, corect+"", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, corect+"", Toast.LENGTH_SHORT).show();
         } else {
+
             position++;
         }
         progressBar.setProgress(current_step);

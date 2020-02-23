@@ -32,7 +32,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="?attr/actionBarSize"
                 android:text="Marks:"
                 android:id="@+id/marks"
                 android:textSize="20sp"
@@ -47,7 +46,7 @@
                 android:padding="20dp"
                 android:paddingBottom="?attr/actionBarSize"
                 android:scrollbars="vertical"
-                android:text="Question 1 of 5"
+                android:text="Loading.."
                 android:textColor="@color/grey_60"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -183,6 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NEXT"
+                    android:id="@+id/next_test"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/grey_60"
                     android:textStyle="bold" />
