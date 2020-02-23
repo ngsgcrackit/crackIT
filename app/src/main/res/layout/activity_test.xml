@@ -52,64 +52,60 @@
                 android:textStyle="bold" />
 
 
-
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="199dp"
                 android:layout_below="@+id/imageView"
-                android:layout_marginTop="190dp"
                 android:layout_gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/radioGroup">
-
+                android:layout_marginTop="190dp"
+                android:orientation="vertical">
 
 
                 <RadioButton
+                    android:id="@+id/a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="A."
-                    android:padding="20dp"
-                    android:id="@+id/a"
                     android:checked="false"
+                    android:padding="20dp"
+                    android:text="A."
                     android:textSize="15sp"
 
                     />
 
 
-
                 <RadioButton
+                    android:id="@+id/b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="B."
-                    android:id="@+id/b"
-                    android:padding="20dp"
                     android:checked="false"
+                    android:padding="20dp"
+                    android:text="B."
                     android:textSize="15sp"
 
-                     />
+                    />
 
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="C."
-                        android:padding="20dp"
-                        android:id="@+id/c"
-                        android:checked="false"
-                        android:textSize="15sp"
+                <RadioButton
+                    android:id="@+id/c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:padding="20dp"
+                    android:text="C."
+                    android:textSize="15sp"
 
-                        />
+                    />
 
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="D."
-                        android:id="@+id/d"
-                        android:padding="20dp"
-                        android:checked="false"
-                        android:textSize="15sp"
-                        />
+                <RadioButton
+                    android:id="@+id/d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:padding="20dp"
+                    android:text="D."
+                    android:textSize="15sp" />
 
             </RadioGroup>
 
