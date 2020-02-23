@@ -1,8 +1,10 @@
 package com.rgs.oes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -162,7 +164,7 @@ public class Test extends AppCompatActivity {
         TextView tv = findViewById(R.id.next_test);
 
         if(tv.getText().equals("Submit")){
-            Toast.makeText(this, "Submit clicked", Toast.LENGTH_SHORT).show();
+            showtestexitDialog();
         }
 
         if (current_step >= MAX_STEP){tv.setText("Submit");} else { tv.setText("Next");}
@@ -196,5 +198,37 @@ public class Test extends AppCompatActivity {
             starttest(position);
         }
 
+    }
+
+    //Exit Dialog
+    private void showtestexitDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.exittest);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        ((AppCompatButton) dialog.findViewById(R.id.bt_submit)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Test.this, "Submit clicked", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Test.this, "Back clicked", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 }
