@@ -249,7 +249,6 @@ public class Test extends AppCompatActivity {
                 databaseReference.child("ID").setValue("Temp.....");
                 DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Users/" + firebaseAuth.getUid() +"/Exams/" + keyi + "/Ans");
 
-
                 for (int i = 0; i < dbans.size() ; i++){
                     databaseReference2.child(String.valueOf(i)).setValue(dbans.get(i));
                 }
