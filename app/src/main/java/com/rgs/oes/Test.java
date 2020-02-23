@@ -254,7 +254,8 @@ public class Test extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(Test.this, "Submit clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Test.this, "Submitted..", Toast.LENGTH_SHORT).show();
+                finish();
                 dialog.dismiss();
             }
         });
