@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -129,6 +130,9 @@ public class Test extends AppCompatActivity {
 
     private void steppedprogress() {
         quest_tv = (TextView) findViewById(R.id.question);
+        quest_tv.setMovementMethod(new ScrollingMovementMethod());
+
+
         marks = findViewById(R.id.marks);
         progressBar = (ProgressBar) findViewById(R.id.progress);
         progressBar.setMax(MAX_STEP);
