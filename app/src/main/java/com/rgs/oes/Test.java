@@ -131,8 +131,6 @@ public class Test extends AppCompatActivity {
     private void steppedprogress() {
         quest_tv = (TextView) findViewById(R.id.question);
         quest_tv.setMovementMethod(new ScrollingMovementMethod());
-
-
         marks = findViewById(R.id.marks);
         progressBar = (ProgressBar) findViewById(R.id.progress);
         progressBar.setMax(MAX_STEP);
