@@ -142,6 +142,7 @@ public class Test extends AppCompatActivity {
                 corect--;
             }
         }
+        Log.d("Taggee" , String.valueOf(corect));
         radioquestionGroup.clearCheck();
     }
 
@@ -189,7 +190,7 @@ public class Test extends AppCompatActivity {
 
         if (current_step >= MAX_STEP){tv.setText("Submit");} else { tv.setText("Next");}
 
-
+        //TODO:Guess it's being called 2 times at last
 
         if (current_step >= MAX_STEP+1){
             current_step--;
